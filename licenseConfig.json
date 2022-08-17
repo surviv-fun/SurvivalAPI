@@ -1,0 +1,42 @@
+{
+    "ignore": [".*", "*.json", "*.txt", "*.css", "*.md"],
+    "license": "HEADER.txt",
+    "licenseFormats": {
+        "default": {
+            "prepend": "/**",
+            "append": " */\n",
+            "eachLine": {
+                "prepend": " * "
+            }
+        },
+        "js": {
+            "prepend": "/**",
+            "append": " */\n",
+            "eachLine": {
+                "prepend": " * "
+            }
+        },
+        "ejs": {
+            "prepend": "<!--",
+            "append": " -->\n",
+            "eachLine": {
+                "prepend": " - "
+            }
+        },
+        "html": {
+            "prepend": "<!--",
+            "append": " -->\n",
+            "eachLine": {
+                "prepend": " - "
+            }
+        },
+        "scss": {
+            "prepend": "/**",
+            "append": " */\n",
+            "eachLine": {
+                "prepend": " * "
+            }
+        }
+    },
+    "trailingWhitespace": "TRIM"
+}

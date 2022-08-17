@@ -1,0 +1,58 @@
+{
+    "name": "survival-api",
+    "version": "1.0.0",
+    "description": "surviv.fun's api",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prettier": "npx prettier --write .",
+        "lint": "./node_modules/.bin/eslint .",
+        "licenseCheck": "license-check-and-add check -f ./licenseConfig.json",
+        "license": "license-check-and-add add -f ./licenseConfig.json"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/surviv-fun/SurvivalAPI.git"
+    },
+    "keywords": [
+        "web",
+        "surviv",
+        "survival",
+        "surviv.fun"
+    ],
+    "author": "LuciferMorningstarDev",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/surviv-fun/SurvivalAPI/issues"
+    },
+    "homepage": "https://github.com/surviv-fun/SurvivalAPI#readme",
+    "devDependencies": {
+        "eslint": "^8.22.0",
+        "license-check-and-add": "^4.0.5",
+        "prettier": "^2.7.1"
+    },
+    "dependencies": {
+        "@discordjs/rest": "^1.0.1",
+        "bcrypt": "^5.0.1",
+        "compression": "^1.7.4",
+        "cookie-parser": "^1.4.6",
+        "discord-api-types": "^0.37.2",
+        "discord.js": "^14.2.0",
+        "dotenv": "^16.0.1",
+        "ejs": "^3.1.8",
+        "enmap": "^5.9.0",
+        "express": "^4.18.1",
+        "express-fileupload": "^1.4.0",
+        "express-mongodb-session": "^3.2.1",
+        "express-rate-limit": "^6.5.1",
+        "express-session": "^1.17.3",
+        "md5": "^2.3.0",
+        "mongodb": "^4.8.1",
+        "node-fetch": "^3.2.10",
+        "requests": "^0.3.0",
+        "serve-favicon": "^2.5.0",
+        "time-stamp": "^2.2.0",
+        "uuid": "^8.3.2",
+        "validator": "^13.7.0"
+    }
+}
