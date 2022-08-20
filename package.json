@@ -46,6 +46,7 @@
         "express-mongodb-session": "^3.2.1",
         "express-rate-limit": "^6.5.1",
         "express-session": "^1.17.3",
+        "jsonwebtoken": "^8.5.1",
         "md5": "^2.3.0",
         "mongodb": "^4.8.1",
         "node-fetch": "^3.2.10",

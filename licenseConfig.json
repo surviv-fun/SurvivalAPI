@@ -1,5 +1,5 @@
 {
-    "ignore": [".*", "*.json", "*.txt", "*.css", "*.md"],
+    "ignore": [".*", "*.json", "*.txt", "*.css", "*.md", "**/.*", "**/*.json", "**/*.txt", "**/*.css", "**/*.md"],
     "license": "HEADER.txt",
     "licenseFormats": {
         "default": {
