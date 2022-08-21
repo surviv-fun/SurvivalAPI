@@ -35,6 +35,8 @@ const compression = require('compression');
 const serveFavicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 
+const PING = require('minecraft-ping');
+
 const mongoSession = require('express-mongodb-session');
 const session = require('express-session');
 
@@ -108,7 +110,15 @@ app.get('/join', async (_, res) => res.redirect('https://discord.gg/9SmcRjW9QT')
 app.get('/email', async (_, res) => res.redirect('mailto:contact@surviv.fun'));
 
 // loads the robots.txt ( SEO )
-app.get('/robots.txt', async (_, res) => res.sendFile('./public/robots.txt'));
+app.get('/robots.txt', async (_, res) => res.sendFile(publicPath + 'robots.txt'));
+
+app.get('/ping', async (_, res) => {
+    const pingData = await PING.pingUri('minecraft://play.surviv.fun:25565');
+    res.status(200).json({
+        error: false,
+        ping: pingData
+    });
+});
 
 // send a 404 at each request if route not found
 app.all('*', async (req, res) => res.status(404).json({ error: true, message: 'not found', code: 404 }));
