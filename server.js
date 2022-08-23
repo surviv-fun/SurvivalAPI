@@ -40,6 +40,12 @@ const PING = require('minecraft-ping');
 const mongoSession = require('express-mongodb-session');
 const session = require('express-session');
 
+var ComponentSerializer;
+(async () => {
+    const { default: serializer } = await import('./node_modules/minecraft-components/lib/ComponentSerializer.js');
+    ComponentSerializer = serializer;
+})();
+
 // load package.json information
 const packageJSON = require('./package.json');
 
@@ -114,9 +120,39 @@ app.get('/robots.txt', async (_, res) => res.sendFile(publicPath + 'robots.txt')
 
 app.get('/ping', async (_, res) => {
     const pingData = await PING.pingUri('minecraft://play.surviv.fun:25565');
+
+    let elements = {};
+
+    if (pingData?.description && ComponentSerializer) {
+        const motd = ComponentSerializer.fromJsonData(pingData?.description);
+        const motdHtml = motd.html();
+        const motdJson = motd.json();
+        const motdPlain = motd.plain();
+        const motdSerialized = motd.serialized();
+        elements.motd_html = motdHtml;
+        elements.motd_json = motdJson;
+        elements.motd_plain = motdPlain;
+        elements.motd_serialized = motdSerialized;
+
+        elements.motd_styles = fs.readFileSync('./node_modules/minecraft-components/css/components.min.css', 'utf-8');
+        elements.eval_load_styles = `
+function loadCSS(cssStyles) {
+  const link = document.createElement('link');
+  link.href = \`data:text/css;base64,\${btoa(cssStyles)}\`;
+  link.type = 'text/css';
+  link.rel = 'stylesheet';
+  document.getElementsByTagName('head')[0].appendChild(link);
+}
+loadCSS(${elements.motd_styles})        
+        `;
+    }
+
     res.status(200).json({
         error: false,
-        ping: pingData
+        ping: {
+            elements,
+            ...pingData
+        }
     });
 });
 
